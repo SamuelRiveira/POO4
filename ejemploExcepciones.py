@@ -1,82 +1,92 @@
 class EjemploExcepciones:
-    def ZeroDivisionError():
+    def zeroDivisionError(self):
         a = 5
         b = 0
         if (a == 0) or (b == 0):
             raise ZeroDivisionError
         return a / b
 
-    def ValueError():    
+    def valueError(self):    
         numEntero = "Hola"
         if type(numEntero) != int:
             raise ValueError
         return numEntero
 
-    def FileNotFoundError():
+    def fileNotFoundError(self):
         with open('archivo_que_no_existe.txt', 'r') as f:
             contenido = f.read()
-            if f.read():
-                raise FileNotFoundError
+            if not contenido:
+                raise FileNotFoundError("PUTA")
             return contenido
 
-    def TypeError():
+    def typeError(self):
         a = "7"
         b = 4
         if type(a) != int or type(b) != int:
             raise TypeError
         return a + b
 
-    def PermissionError():
-        with open('mi_archivo.txt', 'r') as archivo:
+    def permissionError(self):
+        with open('c:\Users') as archivo:
             contenido = archivo.read()
-            if archivo.read():
+            if archivo.read() == PermissionError:
                 raise PermissionError
             return contenido
 
-    def IndexError():
+    def indexError(self):
+        lista = ["tomate", "lechuga", "cebolla"]
+        posicion = 2
+        if posicion > len(lista) - 1:
+            raise IndexError
+        return lista[posicion]
+
+    def keyboardInterrupt(self):
+        palabra = input("Enter something (Ctrl+C to exit): ")
+        if palabra == KeyboardInterrupt:
+            raise KeyboardInterrupt
+        return f"palabra: {palabra}"
+
+    def unicodeDecodeError(self):
+        with open('c:\Users') as archivo:
+            contenido = archivo.read()
+            if UnicodeError:
+                raise UnicodeError
+            return contenido
+    def attributeError(self):
         pass
 
-    def KeyboardInterrupt():
-        pass
+"""#zeroDivisionError
+ejemplo = EjemploExcepciones()
+print(ejemplo.zeroDivisionError())"""
 
-    def UnicodeDecodeError():
-        pass
+"""#valueError
+ejemplo = EjemploExcepciones()
+print(ejemplo.valueError())"""
 
-    def AttributeError():
-        pass
+"""#fileNotFoundError
+ejemplo = EjemploExcepciones()
+print(ejemplo.fileNotFoundError())"""
 
-"""#ZeroDivisionError
-ejemplo = EjemploExcepciones.ZeroDivisionError()
-print(ejemplo)"""
+"""#typeError
+ejemplo = EjemploExcepciones()
+print(ejemplo.typeError())"""
 
-"""#ValueError
-ejemplo = EjemploExcepciones.ValueError()
-print(ejemplo)"""
+"""#permissionError
+ejemplo = EjemploExcepciones()
+print(ejemplo.permissionError())"""
 
-"""#FileNotFoundError
-ejemplo = EjemploExcepciones.FileNotFoundError()
-print(ejemplo)"""
+"""#indexError
+ejemplo = EjemploExcepciones()
+print(ejemplo.indexError())"""
 
-"""#TypeError
-ejemplo = EjemploExcepciones.TypeError()
-print(ejemplo)"""
+"""#keyboardInterrupt
+ejemplo = EjemploExcepciones()
+print(ejemplo.keyboardInterrupt())"""
 
-#PermissionError
-ejemplo = EjemploExcepciones.PermissionError()
-print(ejemplo)
+#unicodeDecodeError
+ejemplo = EjemploExcepciones()
+print(ejemplo.unicodeDecodeError())
 
-#IndexError
-ejemplo = EjemploExcepciones.IndexError()
-print(ejemplo)
-
-#KeyboardInterrupt
-ejemplo = EjemploExcepciones.KeyboardInterrupt()
-print(ejemplo)
-
-#UnicodeDecodeError
-ejemplo = EjemploExcepciones.UnicodeDecodeError()
-print(ejemplo)
-
-#AttributeError
-ejemplo = EjemploExcepciones.AttributeError()
-print(ejemplo)
+"""#attributeError
+ejemplo = EjemploExcepciones()
+print(ejemplo.attributeError())"""
