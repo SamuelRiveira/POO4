@@ -7,8 +7,8 @@ class EjemploExcepciones:
         return a / b
 
     def valueError(self):    
-        numEntero = "Hola"
-        if type(numEntero) != int:
+        numEntero = 6
+        if numEntero != 4:
             raise ValueError
         return numEntero
 
@@ -27,7 +27,7 @@ class EjemploExcepciones:
         return a + b
 
     def permissionError(self):
-        with open('c:\Users') as archivo:
+        with open('mi_archivo.txt') as archivo:
             contenido = archivo.read()
             if archivo.read() == PermissionError:
                 raise PermissionError
@@ -47,13 +47,16 @@ class EjemploExcepciones:
         return f"palabra: {palabra}"
 
     def unicodeDecodeError(self):
-        with open('c:\Users') as archivo:
+        with open('hola.exe') as archivo:
             contenido = archivo.read()
             if UnicodeError:
                 raise UnicodeError
             return contenido
     def attributeError(self):
-        pass
+        objeto = object()
+        if 'atributo_que_no_existe' not in dir(objeto):
+            raise AttributeError("El atributo no existe")
+        return objeto.atributo_que_no_existe
 
 """#zeroDivisionError
 ejemplo = EjemploExcepciones()
@@ -83,10 +86,10 @@ print(ejemplo.indexError())"""
 ejemplo = EjemploExcepciones()
 print(ejemplo.keyboardInterrupt())"""
 
-#unicodeDecodeError
+"""#unicodeDecodeError
 ejemplo = EjemploExcepciones()
-print(ejemplo.unicodeDecodeError())
+print(ejemplo.unicodeDecodeError())"""
 
-"""#attributeError
+#attributeError
 ejemplo = EjemploExcepciones()
-print(ejemplo.attributeError())"""
+print(ejemplo.attributeError())
