@@ -25,66 +25,33 @@ class EjemploExcepciones:
         return a + b
 
     def permissionError(self):
-        a = open("mi_archivo.txt", 'r')
-        if a.write("Hola") == PermissionError:
+        try:
+            a = open("mi_archivo.txt", "r")
+            a.write("hola")
+        except:
             raise PermissionError
     def indexError(self):
         lista = ["tomate", "lechuga", "cebolla"]
-        posicion = 2
-        if posicion > len(lista) - 1:
+        posicion = 3
+        if posicion >= len(lista):
             raise IndexError
         return lista[posicion]
 
     def keyboardInterrupt(self):
-        palabra = input("Enter something (Ctrl+C to exit): ")
-        if palabra == KeyboardInterrupt:
+        try:
+            palabra = input("Escribe aquí: ")
+            if palabra != KeyboardInterrupt:
+                True
+        except:
             raise KeyboardInterrupt
-        return f"palabra: {palabra}"
 
     def unicodeDecodeError(self):
-        with open('hola.exe') as archivo:
-            contenido = archivo.read()
-            if UnicodeError:
-                raise UnicodeError
-            return contenido
+        try:
+            b"\x81".decode("utf-8")
+        except UnicodeDecodeError as error:
+            raise error
     def attributeError(self):
         objeto = object()
         if 'atributo_que_no_existe' not in dir(objeto):
             raise AttributeError("El atributo no existe")
         return objeto.atributo_que_no_existe
-
-"""#zeroDivisionError
-ejemplo = EjemploExcepciones()
-print(ejemplo.zeroDivisionError())"""
-
-"""#valueError
-ejemplo = EjemploExcepciones()
-print(ejemplo.valueError())"""
-
-"""#fileNotFoundError
-ejemplo = EjemploExcepciones()
-print(ejemplo.fileNotFoundError())"""
-
-"""#typeError
-ejemplo = EjemploExcepciones()
-print(ejemplo.typeError())"""
-
-"""#permissionError
-ejemplo = EjemploExcepciones()
-print(ejemplo.permissionError())"""
-
-"""#indexError
-ejemplo = EjemploExcepciones()
-print(ejemplo.indexError())"""
-
-"""#keyboardInterrupt
-ejemplo = EjemploExcepciones()
-print(ejemplo.keyboardInterrupt())"""
-
-"""#unicodeDecodeError
-ejemplo = EjemploExcepciones()
-print(ejemplo.unicodeDecodeError())"""
-
-"""#attributeError
-ejemplo = EjemploExcepciones()
-print(ejemplo.attributeError())"""
