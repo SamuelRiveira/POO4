@@ -1,10 +1,8 @@
 class EjemploExcepciones:
-    def zeroDivisionError(self):
-        a = 5
-        b = 0
-        if (a == 0) or (b == 0):
+    def zeroDivisionError(self, num, den):
+        if (num == 0) or (den == 0):
             raise ZeroDivisionError
-        return a / b
+        return num / den
 
     def valueError(self):    
         numEntero = 6
@@ -27,12 +25,9 @@ class EjemploExcepciones:
         return a + b
 
     def permissionError(self):
-        with open('mi_archivo.txt') as archivo:
-            contenido = archivo.read()
-            if archivo.read() == PermissionError:
-                raise PermissionError
-            return contenido
-
+        a = open("mi_archivo.txt", 'r')
+        if a.write("Hola") == PermissionError:
+            raise PermissionError
     def indexError(self):
         lista = ["tomate", "lechuga", "cebolla"]
         posicion = 2
@@ -90,6 +85,6 @@ print(ejemplo.keyboardInterrupt())"""
 ejemplo = EjemploExcepciones()
 print(ejemplo.unicodeDecodeError())"""
 
-#attributeError
+"""#attributeError
 ejemplo = EjemploExcepciones()
-print(ejemplo.attributeError())
+print(ejemplo.attributeError())"""
