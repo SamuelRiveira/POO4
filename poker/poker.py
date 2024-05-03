@@ -38,7 +38,7 @@ class Card:
 
         - self.suit deberá almacenar el palo de la carta '♣◆❤♠'.
         - self.value deberá almacenar el valor de la carta (1-13)'''
-        # suits = "♣◆❤♠"
+        suits = "♣◆❤♠"
         self.value = value
         self.suit = suit
 
@@ -46,9 +46,7 @@ class Card:
             raise InvalidCardError(f'🃏 Invalid card: {repr(value)} is not a supported symbol')
         if self.value < 1 or self.value > 13:
             raise InvalidCardError(f"🃏 Invalid card: {repr(value)} is not a supported value")
-        # if self.suit not in suits:
-        #     raise InvalidCardError(f'🃏 Invalid card: {repr(suit)} is not a supported suit')
-        if self.suit != self.CLUBS or self.suit != self.DIAMONDS or self.suit != self.HEARTS or self.suit != self.SPADES:
+        if self.suit not in suits:
             raise InvalidCardError(f'🃏 Invalid card: {repr(suit)} is not a supported suit')
         
 
@@ -60,19 +58,23 @@ class Card:
 
     def __repr__(self):
         '''Devuelve el glifo de la carta'''
-        return Card.GLYPHS
+        pass
 
-    def __eq__(self, other: Card | object):
+    def __eq__(self, other):
         '''Indica si dos cartas son iguales'''
-        ...
+        return self.value == other.value and self.suit == other.suit
 
     def __lt__(self, other: Card):
         '''Indica si una carta vale menos que otra'''
-        ...
+        if self.value != other.value:
+            return self.suit < other.suit # Se devuelve el valor más bajo sin importar el palo
+        return self.value < other.value # Se devuelve el palo de menor valor
 
     def __gt__(self, other: Card):
         '''Indica si una carta vale más que otra'''
-        ...
+        if self.value == other.value:
+            return self.suit < other.suit # Se devuelve el valor más alto sin importar el palo
+        return self.value < other.value # Se devuelve el palo de mayor valor
 
     def __add__(self, other: Card) -> Card:
         '''Suma de dos cartas:
@@ -93,7 +95,10 @@ class Card:
     @classmethod
     def get_cards_by_suit(cls, suit: str):
         '''Función generadora que devuelve los glifos de las cartas por su palo'''
-        return Card.GLYPHS
+        for elemento in Card.GLYPHS.keys():
+            print(elemento)
+            if suit in Card.GLYPHS.keys():
+                return elemento
 
 
 class InvalidCardError(Exception):
