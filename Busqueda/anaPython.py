@@ -2,8 +2,8 @@ import re
 class AnaPython:
     @staticmethod
     def countVar(codigo: str) -> str:
-        patronDef = r"def\s+[^\(]+\(([^),]+).*\)\s*->\s*\S+\s*:"
-        resultado = re.findall(patronDef, codigo)
+        patron = r"def\s+[^\(]+\(([^),]+).*\)\s*->\s*\S+\s*:"
+        resultado = re.findall(patron, codigo)
 
         variables = []
         for elemento in resultado:
@@ -13,11 +13,11 @@ class AnaPython:
                 variables.remove(elemento)
 
         
-        patronDef = r"def\s+[^\(]+\(([^),]+).*\)\s*->\s*\S+\s*:"
-        resultado = re.findall(patronDef, codigo)
+        patron = r'\b(\w+)\s*(?:=|\+=|-=|\*=|/=|//=|%=)\s*'
+        resultado = re.findall(patron, codigo)
         
 
-        return variables
+        return variables, resultado
     
     def countDef(codigo: str) -> str:
         patron = r"def.+:"
