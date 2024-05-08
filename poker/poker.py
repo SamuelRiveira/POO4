@@ -83,18 +83,17 @@ class Card:
         1. El nuevo palo será el de la carta más alta.
         2. El nuevo valor será la suma de los valores de las cartas. Si valor pasa
         de 13 se convertirá en un AS.'''
-        if self.value == 1:
-            nuevoValor = 1
-            nuevoSuit = self.suit
-        else:
-            if self > other:
-                nuevoSuit = self.suit
-            else:
-                other.suit
-            nuevoValor = (self.value + other.value) % 13
-            if nuevoValor == 0:
-                nuevoValor = 13
-        return Card(nuevoValor, nuevoSuit)
+        nuevoPalo = ""
+        carta = self.value + other.value
+        if self.value == 1 or carta > self.K_VALUE:
+            carta = 1
+        
+        if self.value > other.value or self.value == 1:
+            nuevoPalo = self.suit
+        elif self.value < other.value or other.value == 1:
+            nuevoPalo = other.suit
+        
+        return Card(carta, nuevoPalo)
 
     def is_ace(self) -> bool:
         '''Indica si una carta es un AS'''
