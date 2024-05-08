@@ -25,7 +25,7 @@ class AnaPython:
         return resultado
     
 def main():
-    archivo = open("regExample.py")
+    archivo = open("Busqueda/regExample.py")
     codigo = archivo.read()
     print(f"Funciones: {AnaPython.countDef(codigo)}\nvariables: {AnaPython.countVar(codigo)}")
 
