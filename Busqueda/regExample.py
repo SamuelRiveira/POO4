@@ -13,7 +13,7 @@ class RegExample:
     
     @staticmethod
     def validURL(url:str) -> bool:
-        pass
+        r"^https?://([a-z].+)+.[a-z]{2}"
     
 
 if __name__ == "__main__":
